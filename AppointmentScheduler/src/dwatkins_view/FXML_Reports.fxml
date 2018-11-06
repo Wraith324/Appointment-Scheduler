@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #003366; -fx-border-color: #7394B5;" stylesheets="@AppointmentScheduler.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dwatkins_view.FXML_ReportsController">
+   <children>
+      <GridPane layoutX="11.0" layoutY="11.0" maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" prefHeight="768.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-border-color: #6699CC; -fx-background-color: #336699;" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="3">
+               <effect>
+                  <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
+               </effect>
+            </StackPane>
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-border-color: #6699CC; -fx-background-color: #336699;" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.rowSpan="2">
+               <effect>
+                  <DropShadow height="30.0" radius="14.5" spread="0.3" width="30.0" />
+               </effect>
+            </StackPane>
+            <MenuBar GridPane.columnSpan="6">
+               <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                     <items>
+                        <MenuItem fx:id="logoutLabel" mnemonicParsing="false" onAction="#logout" text="Logout" />
+                        <MenuItem mnemonicParsing="false" onAction="#exitProgram" text="Exit" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="View">
+                     <items>
+                        <RadioMenuItem mnemonicParsing="false" onAction="#loadRecords" text="Main (Records)">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="viewMenu" />
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem mnemonicParsing="false" selected="true" text="Reports" toggleGroup="$viewMenu" />
+                     </items></Menu>
+               </menus>
+            </MenuBar>
+            <HBox spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <TableView fx:id="apptTypeTable" prefHeight="240.0" prefWidth="406.0" style="-fx-border-color: #000000;">
+                    <columns>
+                      <TableColumn fx:id="monthColumn" prefWidth="95.0" text="Month" />
+                      <TableColumn fx:id="typeColumn" prefWidth="159.0" text="Appointment Type" />
+                        <TableColumn fx:id="countColumn" maxWidth="83.0" minWidth="50.0" prefWidth="83.0" text="Count" />
+                    </columns>
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" />
+                     </HBox.margin>
+                  </TableView>
+                  <TableView fx:id="scheduleTable" prefHeight="235.0" prefWidth="620.0" style="-fx-border-color: #000000; -fx-font-size: 12px;;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <columns>
+                        <TableColumn fx:id="apptDateColumn" maxWidth="80.0" minWidth="80.0" resizable="false" text="Date" />
+                        <TableColumn fx:id="apptStartColumn" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" resizable="false" text="Start" />
+                        <TableColumn fx:id="apptEndColumn" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" resizable="false" text="End" />
+                        <TableColumn fx:id="apptTitleColumn" maxWidth="126.0" minWidth="66.0" prefWidth="113.0" resizable="false" text="Title" />
+                        <TableColumn fx:id="apptTypeColumn" maxWidth="143.0" minWidth="83.0" prefWidth="112.0" resizable="false" text="Type" />
+                        <TableColumn fx:id="apptCustomerColumn" maxWidth="120.0" minWidth="92.0" prefWidth="98.0" resizable="false" text="Customer" />
+                     </columns>
+                     <GridPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" />
+                     </GridPane.margin>
+                     <HBox.margin>
+                        <Insets bottom="15.0" right="15.0" />
+                     </HBox.margin>
+                  </TableView>
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="92.0" prefWidth="674.0" spacing="10.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+               <children>
+                  <Label prefHeight="50.0" text="Appointment Reports" textFill="#feb41d">
+                     <font>
+                        <Font name="Calibri Bold" size="25.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Label prefHeight="25.0" text="Appointment Types by Month" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="monthCombo" onAction="#filterMonth" prefWidth="130.0" promptText="Select Month" />
+                  <Label prefHeight="25.0" text="Schedule by Consultant" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="45.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="consultantCombo" onAction="#filterSchedule" prefWidth="140.0" promptText="Select Consultant" />
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="38.0" prefWidth="811.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <children>
+                  <Label text="Customer Reports" textFill="#feb41d">
+                     <font>
+                        <Font name="Calibri Bold" size="25.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="25.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <TabPane style="-fx-border-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <tabs>
+                  <Tab closable="false" text="Customers by City">
+                     <content>
+                        <BarChart fx:id="customerCityChart" legendVisible="false" style="-fx-background-color: #FFFFFF;">
+                          <xAxis>
+                            <CategoryAxis label="Cities" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="Customers" side="LEFT">
+                                 <tickLabelFont>
+                                    <Font size="12.0" />
+                                 </tickLabelFont>
+                              </NumberAxis>
+                          </yAxis>
+                        </BarChart>
+                     </content>
+                  </Tab>
+                  <Tab closable="false" text="Customers by Country">
+                     <content>
+                        <BarChart fx:id="customerCountryChart" legendVisible="false" prefHeight="176.0" prefWidth="823.0" style="-fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                          <xAxis>
+                            <CategoryAxis fx:id="CategoryAxisLabel" label="Countries" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="Customers" side="LEFT">
+                                 <tickLabelFont>
+                                    <Font size="12.0" />
+                                 </tickLabelFont>
+                              </NumberAxis>
+                          </yAxis>
+                           <GridPane.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" />
+                           </GridPane.margin>
+                        </BarChart>
+                     </content>
+                  </Tab>
+               </tabs>
+               <GridPane.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" />
+               </GridPane.margin>
+            </TabPane>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="982.0" minWidth="10.0" prefWidth="980.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+            <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="15.0" minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="260.0" minHeight="260.0" prefHeight="260.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="12.0" minHeight="12.0" prefHeight="12.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="300.0" minHeight="300.0" prefHeight="300.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="15.0" minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+   </children>
+</AnchorPane>

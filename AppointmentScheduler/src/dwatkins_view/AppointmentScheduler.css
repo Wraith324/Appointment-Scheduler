@@ -1,0 +1,59 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 18, 2018, 5:28:14 PM
+    Author     : David Watkins
+*/
+
+/*.table-view .column-header {
+    -fx-background-color: #336699;
+}*/
+
+.tab-pane .tab-header-area .tab-header-background {
+/*  -fx-opacity: 0; */
+    -fx-background-color: #003366;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #336699;
+}
+
+.tab-pane .tab:selected {
+/*  -fx-background-color: #7394B5;
+    -fx-background-color: #99CCFF; */
+    -fx-background-color: #6699CC;
+}
+
+.tab .tab-label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px;
+    -fx-padding: 0 6 0 6;
+}
+
+.tab-pane:top .tab-header-area {
+    -fx-padding: .516667em 5px 0em 10px;
+}
+
+.text {
+    -fx-font-smoothing-type: lcd;
+}
+
+.radio-button .radio {
+    -fx-padding: 3px;
+}
+
+.blackBorder {
+    -fx-border-width: 5px;
+    -fx-border-color: #000000;
+}
+
+.dialog-pane {
+    -fx-background-color: #336699;
+}
+
+.dialog-pane .label {
+    -fx-text-fill: white;
+}
